@@ -17,6 +17,8 @@ Instructions on how to compile the model yourself:
 ## Installation
 
 ```
+python3 -m venv venv_speed
+./venv_speed/scripts/activate
 python3 -m pip install -r requirements.txt
 ```
 
