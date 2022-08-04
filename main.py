@@ -1,14 +1,14 @@
 #!/usr/bin/env python3.10
 
 from array import array
-from turtle import position
 import numpy as np
 import cv2 as cv
 from numpy import mean
 from detection import detect
 import time
 
-capture = cv.VideoCapture(0)
+capture = cv.VideoCapture('/dev/video2')
+
 frame_width = int(capture.get(3))
 frame_height = int(capture.get(4))
 # out = cv.VideoWriter('outpyCircle.avi', cv.VideoWriter_fourcc(
@@ -67,7 +67,8 @@ def getSpeed(position):
         print('not working')
         pass
     #cv.imshow('output', output)
-    return speedKm
+    #return speedKm
+    return mean(speedKmTotal[-3:])
 
 
 def main():
@@ -107,7 +108,7 @@ def main():
         cv.putText(img, "Fps: {:.2f}".format(
             fps.fps()), (6, 15), cv.FONT_HERSHEY_TRIPLEX, 0.4, color=(255, 255, 255))
         if speed is not None:
-            cv.putText(img, "Speed Pixel/second:: {:.2f}".format(speed), (6, 40), cv.FONT_HERSHEY_TRIPLEX, 0.4, color=(255, 255, 255))
+            cv.putText(img, "Speed Pixel/second:: {:.2f}".format(speed), (6, 40), cv.FONT_HERSHEY_TRIPLEX, 0.4, color=(102, 0, 102))
         #print(img.shape)
         
         cv.imshow('Image', img)
